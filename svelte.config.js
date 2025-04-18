@@ -1,8 +1,12 @@
-import adapter from '@sveltejs/adapter-node';
+import adapter from '@sveltejs/adapter-static';
 
 export default {
   kit: {
-    adapter: adapter()
+    adapter: adapter({
+      fallback: '200.html'  // Important for Vercel to handle SPA routing
+    }),
+    prerender: {
+      entries: ['*']
+    }
   }
 };
-
